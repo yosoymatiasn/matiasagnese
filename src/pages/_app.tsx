@@ -1,6 +1,20 @@
-import type { AppProps } from "next/app";
-import "@/styles/globals.css";
+import "~/styles/globals.css";
+// import "~/styles/dracula.css";
+// import "~/styles/prose-styles.css";
 
-export default function MyApp({ Component, pageProps }: AppProps) {
-	return <Component {...pageProps} />;
+import * as React from "react";
+
+import { SiteLayout } from "~/components/Layouts";
+import { Providers } from "~/components/Providers";
+
+export default function App({ Component, pageProps }) {
+	const getLayout =
+		Component.getLayout ||
+		((page) => (
+			<Providers pageProps={pageProps}>
+				<SiteLayout>{page}</SiteLayout>
+			</Providers>
+		));
+
+	return getLayout(<Component {...pageProps} />);
 }

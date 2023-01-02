@@ -1,13 +1,7 @@
-import Document, {
-	DocumentContext,
-	Head,
-	Html,
-	Main,
-	NextScript,
-} from "next/document";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
-	static async getInitialProps(ctx: DocumentContext) {
+	static async getInitialProps(ctx) {
 		const initialProps = await Document.getInitialProps(ctx);
 		return { ...initialProps };
 	}
@@ -15,21 +9,21 @@ class MyDocument extends Document {
 	render() {
 		return (
 			<Html lang="en">
-				<Head>
-					{/* other head properties are coming from Providers/SEO */}
-					<link rel="preconnect" href="https://fonts.googleapis.com" />
-					<link
-						rel="preconnect"
-						href="https://fonts.gstatic.com"
-						crossOrigin="true"
-					/>
-					<link
-						href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
-						rel="stylesheet"
-					/>
-				</Head>
+				<Head />
 				<body>
-					<Main></Main>
+					<span className="text-tertiary absolute flex -translate-y-full transform space-x-1 border-b border-gray-150 bg-white p-2 focus-within:relative focus-within:translate-y-0 dark:border-gray-800 dark:bg-gray-900">
+						<a className="text-primary font-semibold" href="#main">
+							Skip to content
+						</a>
+						<span>(if available)</span>
+						<span>or</span>
+						<a className="text-primary font-semibold" href="#list">
+							jump to list
+						</a>
+						<span>(if available)</span>
+					</span>
+
+					<Main />
 					<NextScript />
 				</body>
 			</Html>
